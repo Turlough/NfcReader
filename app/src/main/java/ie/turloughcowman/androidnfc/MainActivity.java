@@ -42,12 +42,16 @@ public class MainActivity extends AppCompatActivity {
         adapter.enableReaderMode(
                 this,
                 x -> {
+                    //read value
                     byte[] id = x.getId();
+                    //format as a positive number
                     String numberFormat = "%0" + (id.length * 2) + "X";
                     String text = String.format(numberFormat, new BigInteger(1, id));
+                    //display the number
                     result.post(() -> result.setText(text));
                 },
-                NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK, new Bundle()
+                NfcAdapter.FLAG_READER_NFC_A | NfcAdapter.FLAG_READER_SKIP_NDEF_CHECK,
+                new Bundle()
         );
 
     }
